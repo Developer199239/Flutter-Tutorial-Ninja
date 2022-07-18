@@ -20,6 +20,38 @@ class _QuotesState extends State<Quotes> {
     Quote(author: "Author2", text: "I have nothing to declare except my genius"),
     Quote(author: "Author3", text: "The truth is rarely pure and never simple"),
   ];
+
+
+  Widget quoteTemplate(quote) {
+    return Card(
+      margin: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0),
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+                quote.text,
+              style: TextStyle(
+                fontSize: 18.0,
+                color: Colors.grey[600],
+              ),
+            ),
+            const SizedBox(height: 6.0),
+            Text(
+              quote.author,
+              style: TextStyle(
+                fontSize: 14.0,
+                color: Colors.grey[800],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,9 +62,7 @@ class _QuotesState extends State<Quotes> {
         backgroundColor: Colors.redAccent,
       ),
       body: Column(
-        children: qoutes.map((e) =>
-          Text('${e.text} - ${e.author}')
-        ).toList(growable: true),
+        children: qoutes.map((e) => quoteTemplate(e)).toList(growable: true),
       ),
     );
   }
